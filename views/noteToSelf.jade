@@ -1,0 +1,21 @@
+doctype 5
+html(lang='en')
+  head
+    title Note to Self
+    meta(charset='UTF-8')
+    link(rel='stylesheet', href='public/stylesheets/notes.css')
+    script(src="public/javascripts/noteToSelf.js")
+  body
+    form
+      label#color(for="note_color") Color:
+      select#note_color
+        option(value="LightGoldenRodYellow") yellow
+        option(value="PaleGreen") green
+        option(value="LightPink") pink
+        option(value="LightBlue") blue
+
+      label#text(for="note_text") Text:
+      input#note_text(type='text')
+      input#add_button(type='button', value='Add sticky Note')
+
+    ul#stickies
