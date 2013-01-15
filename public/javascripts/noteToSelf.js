@@ -38,6 +38,7 @@ function openDB() {
 
     // START chrome (obsolete - will be removed -- http://pastebin.com/nnrNkk8T)
     if (typeof db.setVersion === 'function') {
+            console.log("for chrome");
             var versionReq = db.setVersion(1);
             versionReq.onsuccess = function (e) {
                     console.log('versionReq', e);
@@ -47,7 +48,7 @@ function openDB() {
                     console.log('chromeDB', db);
 
                     if(!db.objectStoreNames.contains("noteToSelf")){
-                            db.createObjectStore('noteToSElf', {keyPath: 'timeStamp', autoIncrement: true});
+                            db.createObjectStore('noteToSelf', {keyPath: 'timeStamp', autoIncrement: true});
                     }
             };
     }
@@ -161,7 +162,7 @@ function deleteSticky(event) {
 
   transaction = db.transaction("noteToSelf", "readwrite");
   objectStore = transaction.objectStore("noteToSelf");
-  request = objectStore.delete(key);
+  request = objectStore.delete(+key);
   request.onsuccess = function(event) {
     console.log("note removed from DB!", key);
     removeStickyFromDOM(key);
